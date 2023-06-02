@@ -6,7 +6,7 @@ on:
       - main
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: atefahmed/perfai-atefahmed-action
+  IMAGE_NAME: atefahmed/perfai-atefahmed-private
   TAG: main
   
 jobs:
