@@ -8,7 +8,7 @@ env:
   REGISTRY: ghcr.io
 #  IMAGE_NAME: atefahmed/perfai-atefahmed-private
   IMAGE_NAME: atefahmed/perfai-atefahmed-action
-  TAG: v1.1
+  TAG: v1.2
   
 jobs:
   build-and-push-image:
