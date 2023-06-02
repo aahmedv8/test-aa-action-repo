@@ -1,0 +1,51 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+    branches:
+      - main
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: atefahmed/perfai-atefahmed-action
+  
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses:  docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9      
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.MY_TOKEN }}
+  
+      - name: Docker Extract metadata action (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v4.4.0
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}  
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4.0.0
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+  
+      - name: List Docker images
+        run: docker image ls   
+           |
+         IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+           
+      - name: Pull Docker image
+        run: docker pull ghcr.io/atefahmed/${{ env.IMAGE_NAME }}     
+  
+  
