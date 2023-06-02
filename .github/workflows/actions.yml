@@ -41,7 +41,7 @@ jobs:
              
       - name: Use GHCR.IO image
       #  uses: ghcr.io/atefahmed/perfai-atefahmed-action@v1.1
-        uses: atefahmed/perfai-atefahmed-action@v1.1
+        uses: atefahmed/perfai-atefahmed-action@v1.2
         with:
            openapi_spec_url: "https://petstore.swagger.io/v2/swagger.yaml"
 
