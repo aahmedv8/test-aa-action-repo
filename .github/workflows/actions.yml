@@ -46,6 +46,6 @@ jobs:
          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
            
       - name: Pull Docker image
-        run: docker pull ghcr.io/atefahmed/${{ env.IMAGE_NAME }}     
+        run: docker pull ghcr.io/${{ env.IMAGE_NAME }}     
   
   
