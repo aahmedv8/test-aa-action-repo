@@ -6,8 +6,9 @@ on:
       - main
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: atefahmed/perfai-atefahmed-private
-  TAG: latest
+#  IMAGE_NAME: atefahmed/perfai-atefahmed-private
+  IMAGE_NAME: atefahmed/perfai-atefahmed-action
+  TAG: v1.1
   
 jobs:
   build-and-push-image:
@@ -31,20 +32,19 @@ jobs:
         run: |
              echo  ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.TAG}}
              echo  ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.TAG}}:${{github.actor}}:${{secrets.MY_TOKEN}}       
-             echo  ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.TAG}}
              docker pull ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.TAG}}
              
+#                          echo  ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{env.TAG}}
 #             docker pull ghcr.io/atefahmed/perfai-atefahmed-private:latest
 
 # docker pull ghcr.io/atefahmed/perfai-atefahmed-action
              
-#       - name: Use GHCR.IO image
-#         uses: ghcr.io/{OWNER}/{REPO}/{IMAGE_NAME}:{TAG}
+      - name: Use GHCR.IO image
+        uses: ghcr.io/atefahmed/perfai-atefahmed-action@v1.1
+        with:
+           openapi_spec_url: "https://petstore.swagger.io/v2/swagger.yaml"
+
 #         uses: docker://ghcr.io/{OWNER}/{REPO}/{IMAGE_NAME}:{TAG}    
-#         with:
-#            openapi_spec_url: "https://petstore.swagger.io/v2/swagger.yaml"
-
-
 
 #       - name: Docker Extract metadata action (tags, labels)
 #         id: meta
